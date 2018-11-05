@@ -11,12 +11,12 @@ library(factoextra) # clustering algorithms & visualization
 
 
 #read breast cancer data
-bc_dat <- read.csv('D:/Georgia Tech/CS 7641/Assignment 3/breastcancer.csv', stringsAsFactors = FALSE)
+bc_dat <- read.csv('./breastcancer.csv', stringsAsFactors = FALSE)
 bc_dat$Class[bc_dat$Class == 2] <- 'benign'
 bc_dat$Class[bc_dat$Class == 4] <- 'malignant'
 
 #read diabetes data
-diab_dat <- read.csv('D:/Georgia Tech/CS 7641/Assignment 3/diabetes.csv', stringsAsFactors = FALSE)
+diab_dat <- read.csv('./diabetes.csv', stringsAsFactors = FALSE)
 
 #set seed for reproducibility
 set.seed(27)
@@ -41,7 +41,7 @@ fviz_cluster(k3, data = bc_dat)
 k2 <- kmeans(bc_dat, centers = 2, nstart = 25)
 fviz_cluster(k2, data = bc_dat)
 
-table(read.csv('D:/Georgia Tech/CS 7641/Assignment 3/breastcancer.csv', stringsAsFactors = FALSE)$Class, k2$cluster)
+table(read.csv('./breastcancer.csv', stringsAsFactors = FALSE)$Class, k2$cluster)
 
 ##diabetes data
 
@@ -52,7 +52,7 @@ fviz_cluster(k4, data = diab_dat)
 k2 <- kmeans(diab_dat, centers = 2, nstart = 25)
 fviz_cluster(k2, data = diab_dat)
 
-table(read.csv('D:/Georgia Tech/CS 7641/Assignment 3/diabetes.csv', stringsAsFactors = FALSE)$Class, k2$cluster)
+table(read.csv('./diabetes.csv', stringsAsFactors = FALSE)$Class, k2$cluster)
 
 #EM
 
@@ -74,8 +74,8 @@ pcaCharts <- function(x) {
 
 bcPCA <- prcomp(scale(bc_dat))
 pcaCharts(bcPCA)
-plot(x = bcPCA$x[,1:2], col = read.csv('D:/Georgia Tech/CS 7641/Assignment 3/breastcancer.csv', stringsAsFactors = FALSE)$Class)
+plot(x = bcPCA$x[,1:2], col = read.csv('./breastcancer.csv', stringsAsFactors = FALSE)$Class)
 
 diabPCA <- prcomp(scale(diab_dat))
 pcaCharts(diabPCA)
-plot(x = diabPCA$x[,1:2], col = as.factor(read.csv('D:/Georgia Tech/CS 7641/Assignment 3/diabetes.csv', stringsAsFactors = FALSE)$Class))
+plot(x = diabPCA$x[,1:2], col = as.factor(read.csv('./diabetes.csv', stringsAsFactors = FALSE)$Class))
